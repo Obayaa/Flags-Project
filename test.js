@@ -9,6 +9,12 @@ let allCountriesData = [];
 const fetchCountries = async () => {
   const response = await fetch("https://restcountries.com/v3.1/all");
   const countries = await response.json();
+
+  countries.sort((a, b) => {
+    // Sort countries by name in ascending order
+    return a.name.common.localeCompare(b.name.common);
+  });
+
   return countries;
 }
 
