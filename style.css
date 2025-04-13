@@ -53,6 +53,9 @@ img {
   main {
     grid-template-columns: repeat(2, 1fr);
   }
+  input{
+    width: 80%;
+  }
 }
 @media (min-width: 768px) {
   main {
