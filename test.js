@@ -1,4 +1,4 @@
-const flagContainer = document.querySelector("main");
+const countryCard = document.querySelector("main");
 const searchCountry = document.querySelector("#search");
 
 // This variable will hold all countries data fetched from the API 
@@ -32,21 +32,21 @@ async function initialize() {
 // This function displays the countries in the DOM
 function showCountries(countries) {
   // Clear previous results first
-  flagContainer.innerHTML = '';
+  countryCard.innerHTML = '';
 
   // Display a message if no countries match the search term
   if (countries.length === 0) {
     const noResults = document.createElement("p");
     noResults.textContent = "No results found";
     noResults.classList.add("no-results");
-    flagContainer.appendChild(noResults);
+    countryCard.appendChild(noResults);
     return;
   }
 
   // Loop through the countries and create elements for each
   countries.forEach((country) => {
     const dataContainer = document.createElement("div");
-    dataContainer.classList.add("img-container");
+    dataContainer.classList.add("data-container");
 
     const flagName = document.createElement("p");
     flagName.textContent = country.name.common;
@@ -54,7 +54,12 @@ function showCountries(countries) {
     const flagImage = document.createElement("img");
     flagImage.src = country.flags.svg;
 
-    dataContainer.appendChild(flagImage);
+    const flagImageContainer = document.createElement("div");
+    flagImageContainer.classList.add("flag-image-container");
+
+    flagImageContainer.appendChild(flagImage);
+
+    dataContainer.appendChild(flagImageContainer);
     dataContainer.appendChild(flagName);
 
     populateDOM(dataContainer);
@@ -63,7 +68,7 @@ function showCountries(countries) {
 
 // This function populates the DOM with the country data
 function populateDOM(childElement) {
-  flagContainer.appendChild(childElement);
+  countryCard.appendChild(childElement);
 }
 
 // This function filters the countries based on the search term 
